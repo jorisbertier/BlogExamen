@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>CreatedAt</th>
+                <th>content</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.createdAt|date('d-m-Y') }}</td>
+                <td>{{ publication.content }}</td>
+                <td>
+                    <a href="{{ path('app_homeapp_publication_show', {'id': publication.id}) }}">show</a>
+                    {# {% if is_granted('ROLE_ADMIN') %} #}
+                    {# <a href="{{ path('app_article_edit', {'id': publication.id}) }}">edit</a> #}
+                    {# {% endif %} #}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(publications) }}
+    </div>
+{% endblock %}

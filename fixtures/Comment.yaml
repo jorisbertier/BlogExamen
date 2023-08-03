@@ -1,0 +1,5 @@
+App\Entity\Comment:
+    comment{0..50}:
+        createdAt: '<dateTimeBetween("-2 years", "now")>'
+        content: "<sentence()>"
+        publication: "@publication*"
